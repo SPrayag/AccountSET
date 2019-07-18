@@ -1,0 +1,6 @@
+com\qa\domain\Account.class
+com\qa\repository\AccountMapRepository.class
+com\qa\App.class
+com\qa\repository\AccountRepository.class
+util\JacksonUtil.class
+util\JSONUtil.class
