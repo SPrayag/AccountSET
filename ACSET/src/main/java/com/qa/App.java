@@ -8,7 +8,7 @@ public class App {
 	
 	public static void main(String[] args) {
 		JSONUtil json = new JSONUtil();
-		Account test = new Account("654POI", "Perry", "Como");
+		Account test = new Account(1, "654POI", "Perry", "Como");
 		System.out.println(json.getJSONForObject(test));
 	}
 

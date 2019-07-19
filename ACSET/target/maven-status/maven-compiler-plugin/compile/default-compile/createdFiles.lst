@@ -1,6 +1,10 @@
 com\qa\domain\Account.class
 com\qa\repository\AccountMapRepository.class
+com\qa\service\AccountService.class
 com\qa\App.class
 com\qa\repository\AccountRepository.class
-util\JacksonUtil.class
+com\qa\repository\AccountDBRepository.class
 util\JSONUtil.class
+com\qa\rest\AccountController.class
+com\qa\rest\JAXActivator.class
+com\qa\service\AccountServiceImpl.class

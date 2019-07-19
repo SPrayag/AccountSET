@@ -9,30 +9,30 @@ import javax.persistence.Id;
 @Entity
 public class Account {
 
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@Column (length = 50)
+	private Integer id;
+	@Column(length = 50)
 	private String accountNo;
-	@Column (length = 50)
+	@Column(length = 50)
 	private String firstName;
-	@Column (length = 50)
+	@Column(length = 50)
 	private String lastName;
 
 	
-	public Account(String accountNo, String firstName, String lastName) {
+	public Account(Integer id, String accountNo, String firstName, String lastName) {
 		super();
+		this.id = id;
 		this.accountNo = accountNo;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
 
-	
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -59,6 +59,5 @@ public class Account {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
 
 }

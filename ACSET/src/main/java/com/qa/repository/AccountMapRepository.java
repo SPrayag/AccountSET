@@ -1,21 +1,32 @@
 package com.qa.repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.enterprise.inject.Alternative;
 
 import com.qa.domain.Account;
-
 import util.JSONUtil;
 
+@Alternative
 public class AccountMapRepository implements AccountRepository {
 
-	Map<Integer, Account> accountMap = new HashMap<Integer, Account>();
+	private Map<Integer, Account> accountMap;
 
 	private int count = 1;
 
-	private JSONUtil json = new JSONUtil();
-
+	private JSONUtil json; 
 	
+	
+
+	public AccountMapRepository() {
+		super();
+		this.accountMap = new HashMap<Integer, Account>();
+		this.json = new JSONUtil();  
+	}
+
 	public String getAllAccounts() {
 		return new JSONUtil().getJSONForObject(accountMap);
 	}
@@ -26,7 +37,7 @@ public class AccountMapRepository implements AccountRepository {
 		if (this.accountMap.containsValue(toAdd)) {
 			return SUCCESS;
 		} else {
-			return "Failed to add account";
+			return FAILURE;  
 		}
 	}
 
@@ -34,9 +45,9 @@ public class AccountMapRepository implements AccountRepository {
 		Account toUpdate = this.json.getObjectForJSON(account, Account.class);
 		this.accountMap.replace(accountNo, toUpdate);
 		if (this.accountMap.containsValue(toUpdate)) {
-			return FAILURE;
+			return SUCCESS;
 		} else {
-			return "Failed to add account";
+			return FAILURE;  
 		}
 	}
 
@@ -44,8 +55,16 @@ public class AccountMapRepository implements AccountRepository {
 		return accountMap.values().stream().filter(a -> a.getFirstName().equals(firstName)).count();
 	}
 
+	
 	public String deleteAccount(int accountNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}    
+		if (!this.accountMap.containsKey(accountNo))
+			this.accountMap.remove(accountNo);
+		return SUCCESS;
+	}
+
+	@Override
+	public List<Account> findAccountsByFirstName(String firstName) {
+		return this.accountMap.values().stream().filter(a -> a.getFirstName().equals(firstName))
+				.collect(Collectors.toList());    
+	}
 }

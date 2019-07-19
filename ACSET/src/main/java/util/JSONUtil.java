@@ -3,7 +3,7 @@ package util;
 import javax.enterprise.inject.Default;
 import com.google.gson.Gson;
 
-@Default
+@Default  
 public class JSONUtil {
 
 	private Gson gson;
