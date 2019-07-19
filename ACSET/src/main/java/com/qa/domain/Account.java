@@ -27,6 +27,10 @@ public class Account {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	
+	public Account() {
+		
+	}
 
 	public Integer getId() {
 		return id;
